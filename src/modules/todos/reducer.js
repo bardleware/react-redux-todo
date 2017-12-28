@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
       return {
         newTodoText: '',
         todos: [
-        ...state, 
+        ...state.todos,
         {
           completed: false,
           text: action.payload.text

@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TodoList from './components/TodoList'
 import todos from './index'
 
-export const Container = ({newTodoText, addTodo, updateNewTodoText}) => (
+export class Container extends Component {
+
+handleAddTodo(e) {
+  this.props.addTodo(this.props.newTodoText)
+  e.preventDefault()
+}
+
+handleUpdateNewTodoText(e){
+  console.log(e.target.value)
+  this.props.updateNewTodoText(e.target.value)
+}
+
+
+render() {
+  const { newTodoText } = this.props
+
+  return (
   <div className='container'>
+    <input type="text" value={ newTodoText } onChange={ e => this.handleUpdateNewTodoText(e) }/>
+    <button onClick={ e => this.handleAddTodo(e) }> Add Todo </button>
     <TodoList />
-    <input type="text" value={newTodoText} onChange={updateNewTodoText}/>
-    <button onClick={addTodo}> Add Todo </button>
   </div>
-)
+)}
+}
+
+
 const mapState = (state) => ({
   newTodoText: todos.selectors.newTodoText(state)
 })
