@@ -1,0 +1,2 @@
+export const ADD_TODO = 'TODO.ADD_TODO'
+export const UPDATE_NEW_TODO_TEXT = 'TODO.UPDATE_NEW_TODO_TEXT'
